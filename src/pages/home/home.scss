@@ -1,3 +1,18 @@
 page-home {
+    .avatar{
+        width: 80px !important;
+        height: 80px !important;
+    }
 
+    .saludo{
+        color: rgb(89, 89, 89);
+    }
+
+    .name{
+        font-size: 30px;
+    }
+
+    .text-input[disabled] {
+        opacity: 0.9;
+    }
 }

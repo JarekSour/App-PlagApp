@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Lista de visitas</ion-title>
+        <ion-buttons end>
+            <button (click)="showMap()" ion-button clear>
+                MAPA
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h3 class="date">{{ today }}</h3>
+    <ion-grid>
+        <p style="font-style: italic;text-align: center" *ngIf="ordenes?.length == 0">No tienes servicios programados para hoy</p>
+        <ion-row *ngFor="let item of ordenes" (click)="goVisit(item)">
+            <ion-col col-4 [ngClass]="item.estado == 1 ? 'done': item.estado == 0 ? 'cancel': ''">{{item.nombre_empresa}}</ion-col>
+            <ion-col col-4 [ngClass]="item.estado == 1 ? 'done': item.estado == 0 ? 'cancel': ''">{{item.comuna_empresa}}</ion-col>
+            <ion-col col-4 [ngClass]="item.estado == 1 ? 'done': item.estado == 0 ? 'cancel': ''">{{item.direccion_empresa}}</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

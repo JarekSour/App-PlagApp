@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Actividad de la trampa</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text>Volver</span>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form (submit)="addActividades()" #NewPuntoForm="ngForm">
+        <ion-grid>
+            <ion-row *ngFor="let item of subcategorias; let n=index">
+                <ion-col col-2>
+                    <ion-item>
+                        <ion-checkbox [(ngModel)]="subcategorias[n].check" name="item.subcategoria"></ion-checkbox>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-10>
+                    <ion-item>
+                        <ion-label *ngIf="item.pregunta == null">{{item.subcategoria}}</ion-label>
+                        <ion-label stacked *ngIf="item.pregunta != null">{{item.subcategoria}}</ion-label>
+                        <ion-input [(ngModel)]="subcategorias[n].answer" type="text" *ngIf="item.pregunta != null"
+                            placeholder="{{item.pregunta}}" [type]="item.respuesta" name="item.subcategoria"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+            <ion-row>
+                <button ion-button full type="submit" color="sblue" [disabled]="!NewPuntoForm.form.valid" style="margin-top: 20px;">Agregar actividades del punto</button>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

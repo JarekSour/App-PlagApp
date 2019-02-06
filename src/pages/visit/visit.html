@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>{{json.nombre_empresa}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-fab top right edge>
+        <button ion-fab mini color="danger" (click)="mapStreet()">
+            <ion-icon name="navigate"></ion-icon>
+        </button>
+    </ion-fab>
+
+    <h3 class="date">{{ today }}</h3>
+
+    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x300&maptype=roadmap&markers=color:red|label:|%20{{json.georeferencia}}">
+
+    <ion-item>
+        <p class="nom">Dirección</p>
+        <p class="txt">{{json.direccion}}</p>
+    </ion-item>
+    <ion-item *ngIf="json.telefono">
+        <p class="nom">Teléfono de contacto</p>
+        <p class="txt">{{json.telefono}}</p>
+    </ion-item>
+    <ion-item>
+        <p class="nom">Email</p>
+        <p class="txt">{{json.correo}}</p>
+    </ion-item>
+    <ion-item>
+        <p class="nom">Nombre del/la encargado/a</p>
+        <p class="txt">{{json.nombre_encargado}}</p>
+    </ion-item>
+
+    <button ion-button color="secondary" block large class="btn" *ngIf="json.num == 0" (click)="startNewVisit(json.id)">COMENZAR VISITA</button>
+    <button ion-button color="secondary" block large class="btn" *ngIf="json.num > 0" (click)="startNewVisit(json.id)">COMENZAR REVISIÓN</button>
+    <button ion-button color="danger" block large class="btn" (click)="cancelarModal(json.id)">No se realiza</button>
+</ion-content>

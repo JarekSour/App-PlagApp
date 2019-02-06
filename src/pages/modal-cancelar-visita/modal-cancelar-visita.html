@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Cancelar visita</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text>Volver</span>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form (submit)="cancelar()" #cancelarForm="ngForm">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>Comentario</ion-label>
+                <ion-textarea rows="20" placeholder="Escribe aquí el porque se cancelara la visita..." [(ngModel)]="comentario" name="comentario" required>
+                </ion-textarea>
+            </ion-item>
+            <ion-grid>
+                <ion-row>
+                    <button ion-button full type="submit" color="sblue" [disabled]="!cancelarForm.form.valid" style="margin-top: 50px;">Cancelar visita</button>
+                </ion-row>
+            </ion-grid>
+        </ion-list>
+    </form>
+</ion-content>

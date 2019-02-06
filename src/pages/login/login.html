@@ -1,0 +1,26 @@
+<ion-content padding>
+    <form (submit)="login()" #loginForm="ngForm">
+        <ion-list>
+            <img src="assets/img/logo.png" style="padding-left: 20px;padding-right: 20px;padding-top: 100px;padding-bottom: 30px">
+            <ion-item>
+                <ion-label stacked>Rut</ion-label>
+                <ion-input type="text" name="rut" [(ngModel)]="loginData.rut" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Contraseña</ion-label>
+                <ion-input type="password" name="pass" [(ngModel)]="loginData.pass" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Licencia</ion-label>
+                <ion-input type="text" name="keygen" [(ngModel)]="loginData.keygen" required (keyup)="onKey()"></ion-input>
+            </ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-10 offset-1>
+                        <button ion-button block type="submit" color="sblue" [disabled]="!loginForm.form.valid" style="margin-top: 40px;">Ingresar</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-list>
+    </form>
+</ion-content>

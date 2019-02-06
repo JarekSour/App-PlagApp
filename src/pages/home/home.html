@@ -1,18 +1,66 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar color="sblue">
+        <ion-title>PlagaAPP</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="presentPopover($event)">
+                <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+    <ion-item>
+        <ion-avatar item-start>
+            <img [src]="json.avatar" class="avatar">
+        </ion-avatar>
+        <h1 class="saludo">Hola!</h1>
+        <h2 class="name">{{json.nombre}} {{json.paterno}}</h2>
+    </ion-item>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    <ion-card style="margin-top: 10px;">
+        <ion-card-content>
+            <ion-list inset style="margin-top: 0px;margin-bottom: 0px;">
+                <ion-item>
+                    <ion-label stacked>Rut</ion-label>
+                    <ion-input type="text" disabled [(ngModel)]="json.rut"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Correo electrónico</ion-label>
+                    <ion-input type="text" disabled [(ngModel)]="json.correo"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Télefono de contacto</ion-label>
+                    <ion-input type="text" disabled [(ngModel)]="json.telefono"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Télefono de emergencia</ion-label>
+                    <ion-input type="text" disabled [(ngModel)]="json.emergencia"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Dirección</ion-label>
+                    <ion-input type="text" disabled [(ngModel)]="json.direccion"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Profesión</ion-label>
+                    <ion-input type="text" disabled [(ngModel)]="json.profesion"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Automóvil asignado</ion-label>
+                    <ion-input type="text" disabled [(ngModel)]="json.automovil"></ion-input>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button full large color="spurple" (click)="goServices()">Servicios</button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button full large color="spurple" (click)="goCalendar()">Calendario</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

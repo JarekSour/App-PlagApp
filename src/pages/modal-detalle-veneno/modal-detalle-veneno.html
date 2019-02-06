@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Detalle del producto</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text>Volver</span>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <h3 class="h3">Categoría</h3>
+        <p class="p">{{detalle.categoria}}</p>
+    </ion-item>
+    <ion-item>
+        <h3 class="h3">Nombre</h3>
+        <p class="p">{{detalle.nombre}}</p>
+    </ion-item>
+    <ion-item>
+        <h3 class="h3">Número de registro ISP</h3>
+        <p class="p">{{detalle.isp}}</p>
+    </ion-item>
+    <ion-item>
+        <h3 class="h3">Formulación</h3>
+        <p class="p">{{detalle.formulacion}}</p>
+    </ion-item>
+    <ion-item>
+        <h3 class="h3">Concentración</h3>
+        <p class="p">{{detalle.concentracion}}</p>
+    </ion-item>
+    <ion-item>
+        <h3 class="h3">Dosis</h3>
+        <p class="p">{{detalle.dosis}}</p>
+    </ion-item>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar class="footer-btn" color="sblue">
+        <button ion-button block (click)="seleccionar()" outline color="light">Seleccionar</button>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Nuevo punto</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form (submit)="addPoint()" #NewPuntoForm="ngForm">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>Lectura de código QR</ion-label>
+                <ion-input type="text" [(ngModel)]="json.qr" name="qr" disabled (click)="showQR()" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Tipo de selección</ion-label>
+                <ion-select [(ngModel)]="json.tipo" name="tipo" required cancelText="Cancelar" okText="Aceptar">
+                    <ion-option>Trampa</ion-option>
+                    <ion-option>Desinsectado/Sanitizado</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="json.tipo == 'Trampa'">
+                <ion-label stacked>Tipo de trampa</ion-label>
+                <ion-select [(ngModel)]="json.trampa" (ngModelChange)="onChangeTrampa()" name="trampa" required cancelText="Cancelar" okText="Aceptar">
+                    <ion-option *ngFor="let item of trampa">{{item.nombre}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="exist == true && json.tipo == 'Trampa'">
+                <ion-label stacked>Cebo</ion-label>
+                <ion-input type="text" [(ngModel)]="json.cebo" name="cebo" disabled (click)="showModalCebo()"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="json.tipo == 'Desinsectado/Sanitizado'">
+                <ion-label stacked>Desinsectado / Sanitizado</ion-label>
+                <ion-input type="text" [(ngModel)]="json.veneno" name="veneno" disabled (click)="showModalVeneno()" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label stacked>Sector</ion-label>
+                <ion-select name="instalacion" [(ngModel)]="json.sector" required cancelText="Cancelar" okText="Aceptar">
+                    <ion-option *ngFor="let item of sector">{{item.nombre}}</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col *ngIf="!ifMapa" col-12>
+                        <button type="button" ion-button color="spurple" outline block (click)="addPointMap()">Agregar punto en el mapa</button>
+                    </ion-col>
+                    <ion-col *ngIf="ifMapa" col-10>
+                        <button type="button" ion-button color="spurple" outline block (click)="addPointMap()">Cambiar punto en el mapa</button>
+                    </ion-col>
+                    <ion-col *ngIf="ifMapa" col-2>
+                        <button ion-fab mini color="secondary" style="width: 30px;height: 30px;">
+                            <ion-icon name="checkmark"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col *ngIf="!ifFoto" col-12>
+                        <button type="button" ion-button color="spurple" outline block (click)="addPhotoTramp()">Fotografía de trampa instalada</button>
+                    </ion-col>
+                    <ion-col *ngIf="ifFoto" col-10>
+                        <button type="button" ion-button color="spurple" outline block (click)="addPhotoTramp()">Cambiar fotografía de trampa</button>
+                    </ion-col>
+                    <ion-col *ngIf="ifFoto" col-2>
+                        <button ion-fab mini color="secondary" style="width: 30px;height: 30px;">
+                            <ion-icon name="checkmark"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <ion-item>
+                <ion-label stacked>Comentario</ion-label>
+                <ion-textarea rows="5" placeholder="Escribe aquí tu comentario..." [(ngModel)]="json.comentario" name="comentario">
+                </ion-textarea>
+            </ion-item>
+            <ion-grid>
+                <ion-row>
+                    <button ion-button full type="submit" color="sblue" [disabled]="!NewPuntoForm.form.valid" style="margin-top: 20px;">Agregar punto</button>
+                </ion-row>
+            </ion-grid>
+        </ion-list>
+    </form>
+</ion-content>

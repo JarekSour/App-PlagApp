@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>{{json.nombre_empresa}}</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="terminarVisita()">
+                <span ion-text>Finalizar</span>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <h3 class="date">{{ today }}</h3>
+
+    <div text-center style="margin-bottom: 13px;">
+        <span class="txtHour">Hora de Inicio</span>
+        <span color="primary" class="hour">{{json.startTime | date: 'HH:mm'}}</span>
+    </div>
+
+    <ion-grid>
+        <ion-row *ngFor="let item of puntos" (click)="showPunto(item)" style="padding-top: 7px;padding-bottom: 7px;border-bottom: 1px solid #dadada;">
+            <ion-col col-2>{{item.nombre}}</ion-col>
+            <ion-col col-4>{{item.sector}}</ion-col>
+            <ion-col col-5>{{item.trampa ? item.trampa : 'Desinsectado / Sanitizado' }}</ion-col>
+            <ion-col col-1>
+                <ion-icon *ngIf="item.revisado" color="secondary" name="checkmark-circle"></ion-icon>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-fab right bottom>
+        <button ion-fab color="sblue" (click)="addPunto()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
+</ion-content>

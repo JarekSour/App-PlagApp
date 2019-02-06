@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Lista de cebos</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text>Volver</span>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-item-group >
+        <button ion-item *ngFor="let item of cebos" (click)="showModalDetalleCebo(item)">
+            {{ item.marca }} | {{item.formulacion}}
+        </button>
+    </ion-item-group>
+</ion-content>

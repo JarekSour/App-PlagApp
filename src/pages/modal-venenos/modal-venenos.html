@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Lista de aplicaciones</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text>Volver</span>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-item-group *ngFor="let head of title">
+        <ion-item-divider color="light">{{head}}</ion-item-divider>
+        <div *ngFor="let item of all">
+            <button ion-item *ngIf="item.categoria == head" (click)="showModalDetalleVeneno(item)">
+                {{ item.nombre }} | {{item.formulacion}}
+            </button>
+        </div>
+    </ion-item-group>
+</ion-content>

@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>
+            Firma
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <signature-pad [options]="signaturePadOptions"></signature-pad>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <button ion-button full color="sgray" (click)="drawClear()">Limpiar</button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button full color="spurple" (click)="drawComplete()">Listo</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <div>
+        <img class="signatureImage" [src]="signatureImage" *ngIf="signatureImage" />
+    </div>
+</ion-content>
+
+<ion-footer *ngIf="listo">
+    <ion-toolbar class="footer-btn" color="sblue">
+        <button ion-button block (click)="confirmar()" outline color="light">Confirmar</button>
+    </ion-toolbar>
+</ion-footer>

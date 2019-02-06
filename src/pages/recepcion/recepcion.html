@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Recepción cliente</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h3 class="date">{{ today }}</h3>
+    <h4 class="empresa">{{nombre_empresa}}</h4>
+    <ion-row>
+        <ion-item>
+            <ion-label stacked>Nombre de cliente</ion-label>
+            <ion-input type="text" [(ngModel)]="json.nombre" name="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Rut de cliente</ion-label>
+            <ion-input type="text" [(ngModel)]="json.rut" name="rut"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Tu comentario</ion-label>
+            <ion-textarea rows="3" placeholder="Escribe aquí tu comentario..." [(ngModel)]="json.comentario" name="comentario">
+            </ion-textarea>
+        </ion-item>
+    </ion-row>
+    <p>Firma de recepción</p>
+    <img *ngIf="ifSignatureRecepcion" [src]="signatureRecepcion" class="firma" (click)="showSignature('rece')">
+    <button *ngIf="!ifSignatureRecepcion" ion-button outline block style="height: 150px;margin-top: 20px;" color="sgray" (click)="showSignature('rece')">Firma de recepción</button>
+    <p>Firma de técnico</p>
+    <img *ngIf="ifSignatureTecnico" [src]="signatureTecnico" class="firma" (click)="showSignature('tech')">
+    <button *ngIf="!ifSignatureTecnico" ion-button outline block style="height: 150px;margin-top: 20px;" color="sgray" (click)="showSignature('tech')">Firma de técnico</button>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar class="footer-btn" color="sblue">
+        <button ion-button block (click)="finalizar()" outline color="light">Finalizar</button>
+    </ion-toolbar>
+</ion-footer>

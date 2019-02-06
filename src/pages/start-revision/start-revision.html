@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Revisión del punto</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form (submit)="addRevision()" #NewPuntoForm="ngForm">
+        <h2 text-center>{{json.nombre }} : {{ isTrampa ? json.trampa : json.veneno}}</h2>
+        <div text-center style="margin-top: 25px;">
+            <a ion-button outline *ngIf="isTrampa" (click)="showActividad()">Seleccionar actividad de la trampa</a>
+        </div>
+
+        <ion-row *ngFor="let item of jsonSubSelected">
+            <ion-item>
+                <ion-label>{{item.subcategoria}}
+                    <br>
+                    <span style="color: gray;font-size: 13px;" *ngIf="item.pregunta">{{item.pregunta}}: {{item.answer}}</span>
+                </ion-label>
+            </ion-item>
+        </ion-row>
+        <ion-item style="margin-top: 25px;" *ngIf="ifTrampaEncontrada || !isTrampa">
+            <ion-label>{{ isTrampa ? 'Se renovará la trampa?': 'Se renovará el sanitizado?'}}</ion-label>
+            <ion-checkbox checked="false" [(ngModel)]="chlNuevaTrampa" name="chlNuevaTrampa"></ion-checkbox>
+        </ion-item>
+        <ion-item *ngIf="chlNuevaTrampa">
+            <ion-label stacked>Lectura de código QR</ion-label>
+            <ion-input type="text" name="qr" disabled (click)="showQR()" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Sector</ion-label>
+            <ion-select name="instalacion" [(ngModel)]="json.sector" cancelText="Cancelar" okText="Aceptar">
+                <ion-option *ngFor="let item of instalacion">{{item.nombre}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <button type="button" ion-button color="spurple" outline block (click)="changePointMap()">Ver punto en mapa / editar</button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col *ngIf="!ifFoto" col-12>
+                    <button type="button" ion-button color="spurple" outline block (click)="addPhotoTramp()">Fotografía de trampa instalada</button>
+                </ion-col>
+                <ion-col *ngIf="ifFoto" col-10>
+                    <button type="button" ion-button color="spurple" outline block (click)="addPhotoTramp()">Cambiar fotografía de trampa</button>
+                </ion-col>
+                <ion-col *ngIf="ifFoto" col-2>
+                    <button ion-fab mini color="secondary" style="width: 30px;height: 30px;">
+                        <ion-icon name="checkmark"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-item>
+            <ion-label stacked>Comentario</ion-label>
+            <ion-textarea rows="5" placeholder="Escribe aquí tu comentario..." [(ngModel)]="json.comentario" name="comentario">
+            </ion-textarea>
+        </ion-item>
+        <ion-grid>
+            <ion-row>
+                <button ion-button full type="submit" color="sblue" [disabled]="!NewPuntoForm.form.valid" style="margin-top: 20px;">Finalizar revisión del punto</button>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

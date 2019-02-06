@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>Resumen</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h3 class="date">{{ today }}</h3>
+    <h4 class="empresa">{{nombre_empresa}}</h4>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-4 text-center>
+                <span class="nameTime">Inicio</span>
+                <br>
+                <span class="valueTime">
+                    {{start | date: 'HH:mm'}} </span>
+            </ion-col>
+            <ion-col col-4 text-center>
+                <span class="nameTime">Termino</span>
+                <br>
+                <span class="valueTime">
+                    {{end | date: 'HH:mm'}}</span>
+            </ion-col>
+            <ion-col col-4 text-center>
+                <span class="nameTime">Total</span>
+                <br>
+                <span class="valueTime"> {{tiempoTotal}} min</span>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
+                <p class="puntos">Puntos instalados : {{puntos.length}}</p>
+            </ion-col>
+        </ion-row>
+        <ion-grid>
+            <ion-row *ngFor="let item of puntos">
+                <ion-col col-4>{{item.nombre}}</ion-col>
+                <ion-col col-4>{{item.sector}}</ion-col>
+                <ion-col col-4>{{item.trampa ? item.trampa : 'Desinsectado / Sanitizado' }}</ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar class="footer-btn" color="sblue">
+        <button ion-button block (click)="continuar()" outline color="light">Continuar</button>
+    </ion-toolbar>
+</ion-footer>

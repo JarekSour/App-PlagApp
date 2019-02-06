@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar color="sblue">
+        <ion-title>
+            {{ viewTitle }}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="padding">
+        <calendar [locale]="calendar.locale" [eventSource]="eventSource" [startingDayWeek]="calendar.startingDayWeek" [startingDayMonth]="calendar.startingDayMonth"
+            [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+            (onTimeSelected)="onTimeSelected($event)" step="30" class="calendar">
+        </calendar>
+    </div>
+</ion-content>
